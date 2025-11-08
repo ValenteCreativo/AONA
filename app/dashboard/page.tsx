@@ -8,6 +8,8 @@ import { MapPlaceholder } from "@/components/map-placeholder"
 import { RecentReadingsTable } from "@/components/tables/recent-readings-table"
 import { InkBrushDivider } from "@/components/ink-brush-divider"
 import { LoadingSpinner } from "@/components/loading-spinner"
+import { AgentActivityCard } from "@/components/agent-activity-card"
+import { RealNodesCard } from "@/components/real-nodes-card"
 import { useStore } from "@/lib/store"
 
 export default function DashboardPage() {
@@ -99,23 +101,12 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Micropayments Earned (Mock) */}
+        {/* Real-time x402 Network Activity */}
         <section className="mb-16">
-          <div className="p-8 rounded-lg border border-border/50 bg-gradient-to-br from-primary/5 to-secondary/5">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-light text-muted-foreground tracking-wide mb-2">Total Earned (Mock Data)</p>
-                <p className="text-4xl font-light tracking-wide">$1,247.50</p>
-                <p className="text-sm font-light text-muted-foreground mt-2">via x402 micropayments</p>
-              </div>
-              <div className="text-right">
-                <p className="text-sm font-light text-secondary">+$12.30</p>
-                <p className="text-xs font-light text-muted-foreground">last hour</p>
-              </div>
-            </div>
-            <p className="text-xs font-light text-muted-foreground mt-6 italic">
-              TODO(Claude): x402 + onchain integration
-            </p>
+          <h2 className="text-2xl mb-6">x402 Network Status</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <RealNodesCard />
+            <AgentActivityCard />
           </div>
         </section>
 
