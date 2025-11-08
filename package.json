@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "agent": "cd agents/water-analyst && npm install && npm start",
+    "agent:dev": "cd agents/water-analyst && npm install && npm run dev"
   },
   "dependencies": {
     "@coinbase/x402": "^0.7.1",

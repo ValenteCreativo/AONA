@@ -1,0 +1,25 @@
+{
+  "name": "water-analyst-agent",
+  "version": "1.0.0",
+  "description": "AONA Water Quality AI Agent - Autonomous x402 payment consumer",
+  "main": "agent.js",
+  "type": "module",
+  "scripts": {
+    "start": "node agent.js",
+    "dev": "node --watch agent.js"
+  },
+  "keywords": [
+    "x402",
+    "solana",
+    "ai-agent",
+    "water-quality",
+    "depin"
+  ],
+  "author": "AONA",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/web3.js": "^1.98.4",
+    "axios": "^1.8.0",
+    "bs58": "^6.0.0"
+  }
+}
