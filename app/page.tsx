@@ -4,6 +4,7 @@ import { WaterRippleBackground } from "@/components/water-ripple-background"
 import { HeroInkBrush } from "@/components/hero-ink-brush"
 import { HydrologyContours } from "@/components/hydrology-contours"
 import { WaterCrisisModal } from "@/components/water-crisis-modal"
+import WaterParticles from "@/components/ui/WaterParticles"
 
 export default function HomePage() {
   return (
@@ -11,10 +12,12 @@ export default function HomePage() {
       <WaterRippleBackground />
       <HydrologyContours />
 
+      {/* ✅ capa sutil de partículas */}
+      <WaterParticles className="pointer-events-none absolute inset-0 -z-10" />
+
       <section className="relative pt-48 pb-40 px-6 min-h-screen flex items-center justify-center">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center space-y-20">
-            {/* Still ink stroke */}
             <HeroInkBrush />
 
             <div className="space-y-20">
@@ -40,7 +43,9 @@ export default function HomePage() {
                 <p className="text-base md:text-lg font-extralight tracking-[0.18em] text-foreground/60">
                   The network translates.
                 </p>
-                <p className="text-base md:text-lg font-extralight tracking-[0.18em] text-foreground/60">AONA.</p>
+                <p className="text-base md:text-lg font-extralight tracking-[0.18em] text-foreground/60">
+                  AONA.
+                </p>
               </div>
               <InkBrushDivider />
             </div>
@@ -78,7 +83,6 @@ export default function HomePage() {
 
               <InkBrushDivider />
 
-              {/* How It Works - kept simple */}
               <div className="space-y-12 pt-12">
                 <h2 className="text-2xl font-extralight tracking-[0.2em] text-foreground/70">How It Works</h2>
 
@@ -111,22 +115,13 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col gap-8 items-center pt-16">
-              <Link
-                href="/atlas"
-                className="group text-base font-extralight tracking-[0.15em] text-foreground/70 hover:text-primary transition-all duration-500 py-3"
-              >
+              <Link href="/atlas" className="group text-base font-extralight tracking-[0.15em] text-foreground/70 hover:text-primary transition-all duration-500 py-3">
                 Observe the Waters →
               </Link>
-              <Link
-                href="/insight"
-                className="group text-base font-extralight tracking-[0.15em] text-foreground/70 hover:text-primary transition-all duration-500 py-3"
-              >
+              <Link href="/insight" className="group text-base font-extralight tracking-[0.15em] text-foreground/70 hover:text-primary transition-all duration-500 py-3">
                 Read the Signals →
               </Link>
-              <Link
-                href="/integrate"
-                className="group text-base font-extralight tracking-[0.15em] text-foreground/70 hover:text-primary transition-all duration-500 py-3"
-              >
+              <Link href="/integrate" className="group text-base font-extralight tracking-[0.15em] text-foreground/70 hover:text-primary transition-all duration-500 py-3">
                 Join the Network →
               </Link>
 
