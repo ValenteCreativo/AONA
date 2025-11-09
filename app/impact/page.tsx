@@ -70,15 +70,51 @@ export default function ImpactPage() {
     return () => clearInterval(interval)
   }, [])
 
+  const formatCurrency = (value: number) =>
+    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value)
+
+  const impactTiles = [
+    {
+      label: "People Protected",
+      value: loading ? "—" : metrics.peopleProtected.toLocaleString(),
+      description: "Lives safeguarded by network monitoring"
+    },
+    {
+      label: "Crisis Avoided",
+      value: loading ? "—" : metrics.crisisAvoided.toLocaleString(),
+      description: "Contamination events prevented by early detection"
+    },
+    {
+      label: "Watersheds Protected",
+      value: loading ? "—" : metrics.cuencasSaved.toLocaleString(),
+      description: "Critical basins with active monitoring"
+    },
+    {
+      label: "Cost Saved",
+      value: loading ? "—" : formatCurrency(metrics.costSaved),
+      description: "Emergency response costs avoided"
+    },
+    {
+      label: "Active Nodes",
+      value: loading ? "—" : metrics.nodesActive.toLocaleString(),
+      description: "Sensors streaming on-chain telemetry"
+    },
+    {
+      label: "Alerts Generated",
+      value: loading ? "—" : metrics.alertsGenerated.toLocaleString(),
+      description: "AI signals awaiting operator review"
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-background pt-20">
       {/* Header */}
       <div className="container mx-auto px-6 py-12">
         <div className="max-w-3xl">
-          <h1 className="text-5xl font-light tracking-widest text-foreground mb-6">
+          <h1 className="text-4xl font-extralight tracking-[0.2em] text-foreground/80 mb-6">
             Real Impact
           </h1>
-          <p className="text-lg font-light text-muted-foreground leading-relaxed tracking-wide">
+          <p className="text-base font-light text-muted-foreground leading-relaxed tracking-[0.2em] uppercase">
             Beyond blockchain metrics: the real-world impact of AONA's water protection network.
             Every node monitors water quality, every alert prevents contamination, every action protects communities.
           </p>
@@ -95,74 +131,24 @@ export default function ImpactPage() {
 
       {/* Hero Impact Metrics */}
       <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {/* People Protected */}
-          <Card className="border-border/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border-blue-500/30">
-            <CardHeader>
-              <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">
-                People Protected
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-5xl font-light text-blue-600 mb-2">
-                {loading ? '—' : metrics.peopleProtected.toLocaleString()}
-              </div>
-              <p className="text-xs text-muted-foreground font-light">
-                Lives safeguarded by network monitoring
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Crisis Avoided */}
-          <Card className="border-border/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/30">
-            <CardHeader>
-              <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">
-                Crisis Avoided
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-5xl font-light text-green-600 mb-2">
-                {loading ? '—' : metrics.crisisAvoided}
-              </div>
-              <p className="text-xs text-muted-foreground font-light">
-                Contamination events prevented by early detection
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Watersheds Saved */}
-          <Card className="border-border/50 bg-gradient-to-br from-purple-500/10 to-violet-500/10 border-purple-500/30">
-            <CardHeader>
-              <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">
-                Watersheds Protected
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-5xl font-light text-purple-600 mb-2">
-                {loading ? '—' : metrics.cuencasSaved}
-              </div>
-              <p className="text-xs text-muted-foreground font-light">
-                Critical basins with active monitoring
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Cost Saved */}
-          <Card className="border-border/50 bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border-orange-500/30">
-            <CardHeader>
-              <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">
-                Cost Saved
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-5xl font-light text-orange-600 mb-2">
-                {loading ? '—' : `$${(metrics.costSaved / 1000).toFixed(0)}k`}
-              </div>
-              <p className="text-xs text-muted-foreground font-light">
-                Emergency response costs avoided
-              </p>
-            </CardContent>
-          </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {impactTiles.map((tile) => (
+            <Card key={tile.label} className="border border-border/60 bg-card/70 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-xs font-light tracking-[0.35em] uppercase text-muted-foreground">
+                  {tile.label}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-light text-foreground mb-2">
+                  {tile.value}
+                </div>
+                <p className="text-xs text-muted-foreground font-light">
+                  {tile.description}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         {/* How Impact is Calculated */}
@@ -267,9 +253,9 @@ export default function ImpactPage() {
 
       {/* Call to Action */}
       <div className="container mx-auto px-6 py-12">
-        <Card className="border-border/50 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
+        <Card className="border border-border/60 bg-card/70 backdrop-blur-sm">
           <CardContent className="py-12 text-center">
-            <h3 className="text-2xl font-light tracking-widest text-foreground mb-4">
+            <h3 className="text-2xl font-light tracking-[0.3em] text-foreground/90 mb-4 uppercase">
               Protect Water, Protect Life
             </h3>
             <p className="text-sm font-light text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">

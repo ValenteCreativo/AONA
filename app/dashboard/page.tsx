@@ -94,8 +94,10 @@ export default function DashboardPage() {
         <div className="mb-12">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="mb-2">Hydrology Dashboard</h1>
-              <p className="text-muted-foreground font-light text-sm tracking-wide">
+              <h1 className="text-4xl font-extralight tracking-[0.2em] text-foreground/80 mb-2">
+                Hydrology Dashboard
+              </h1>
+              <p className="text-muted-foreground font-light text-sm tracking-[0.3em] uppercase">
                 Real-time aquatic system monitoring
               </p>
             </div>
