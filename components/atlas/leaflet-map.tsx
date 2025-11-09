@@ -51,6 +51,7 @@ function MapController() {
 export default function LeafletMap({ usgsData }: LeafletMapProps) {
   return (
     <MapContainer
+      key="aona-map-unique-instance" // Prevents re-initialization error
       center={[39.74, -104.99]}
       zoom={7}
       style={{ height: "100%", width: "100%" }}

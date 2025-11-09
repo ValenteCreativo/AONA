@@ -9,6 +9,7 @@ import { Connection, PublicKey } from "@solana/web3.js";
 import * as anchor from "@coral-xyz/anchor";
 import idl from "@/app/idl/aona_oracle.json";
 import { calculateNodePrice } from "@/lib/x402";
+import { DEMO_NODES } from "@/lib/demo-nodes";
 
 const PROGRAM_ID = new PublicKey("3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL");
 const RPC_URL = process.env.NEXT_PUBLIC_SOLANA_RPC_URL || "https://api.devnet.solana.com";
@@ -124,10 +125,12 @@ export async function GET(request: NextRequest) {
     const nodeAccounts = await program.account.node.all();
 
     if (nodeAccounts.length === 0) {
+      console.log("No on-chain nodes found, returning demo nodes");
       return NextResponse.json({
-        nodes: [],
-        count: 0,
-        message: "No nodes found on-chain. Create nodes first.",
+        nodes: DEMO_NODES,
+        count: DEMO_NODES.length,
+        source: "demo",
+        message: "Using demo nodes - blockchain nodes not yet deployed",
       });
     }
 
@@ -196,14 +199,15 @@ export async function GET(request: NextRequest) {
       programId: PROGRAM_ID.toBase58(),
     });
   } catch (error) {
-    console.error("Error fetching nodes:", error);
+    console.error("Error fetching nodes from blockchain, using demo nodes:", error);
 
-    return NextResponse.json(
-      {
-        error: "Failed to fetch nodes from Anchor program",
-        details: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 500 }
-    );
+    // Graceful degradation: return demo nodes instead of error
+    return NextResponse.json({
+      nodes: DEMO_NODES,
+      count: DEMO_NODES.length,
+      source: "demo",
+      message: "Blockchain temporarily unavailable - showing demo nodes",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 }
