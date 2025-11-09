@@ -18,6 +18,7 @@ export function Header() {
     { href: "/insight", label: "Insight" },
     { href: "/nodes", label: "Nodes" },
     { href: "/alerts", label: "Alerts" },
+    { href: "/contribute", label: "Contribute" },
     { href: "/integrate", label: "Integrate" },
   ]
 
