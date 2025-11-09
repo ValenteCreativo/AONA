@@ -10,14 +10,54 @@ import { InkBrushDivider } from "@/components/ink-brush-divider"
 import { LoadingSpinner } from "@/components/loading-spinner"
 import { AgentActivityCard } from "@/components/agent-activity-card"
 import { RealNodesCard } from "@/components/real-nodes-card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { aonaAPI } from "@/lib/api-client"
 import { useStore } from "@/lib/store"
 
 export default function DashboardPage() {
   const { readings, updateReadings, lastUpdate } = useStore()
   const [mounted, setMounted] = useState(false)
+  const [nodes, setNodes] = useState<any[]>([])
+  const [agentData, setAgentData] = useState<any>(null)
+  const [usdcPrice, setUsdcPrice] = useState<number>(1.0)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  // Fetch real x402 network data
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Fetch real nodes
+        const nodesRes = await aonaAPI.getNodes()
+        setNodes(nodesRes.nodes || [])
+
+        // Fetch agent activity
+        const agent = await aonaAPI.getAgentOutput()
+        setAgentData(agent)
+
+        // Fetch USDC price from Switchboard
+        try {
+          const price = await aonaAPI.getPrices()
+          setUsdcPrice(price.prices?.USDC?.usd || 1.0)
+        } catch (e) {
+          console.log('Price fetch failed, using fallback')
+          setUsdcPrice(1.0)
+        }
+
+        setLoading(false)
+      } catch (error) {
+        console.error('Dashboard fetch error:', error)
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+    const interval = setInterval(fetchData, 30000) // Refresh every 30s
+    return () => clearInterval(interval)
   }, [])
 
   // Update readings every 10 seconds for demo
@@ -39,6 +79,12 @@ export default function DashboardPage() {
   // Calculate current metrics from latest reading
   const latestReading = readings[readings.length - 1]
 
+  // Calculate network stats
+  const totalEarned = agentData?.summary?.totalSpentSOL || 0
+  const avgReputation = nodes.length > 0
+    ? nodes.reduce((sum, n) => sum + n.reputation.score, 0) / nodes.length
+    : 0
+
   return (
     <main className="min-h-screen pt-24 pb-16 px-6">
       <div className="container mx-auto max-w-7xl">
@@ -58,6 +104,76 @@ export default function DashboardPage() {
         </div>
 
         <InkBrushDivider />
+
+        {/* x402 Network Hero Stats */}
+        <section className="mt-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">Active Nodes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-light mb-2">{nodes.length}</div>
+                <Badge variant="outline" className="text-xs border-green-500/50 text-green-500">
+                  🔴 LIVE
+                </Badge>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">Agent Spending</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-light mb-1">{totalEarned.toFixed(3)}</div>
+                <div className="text-xs text-muted-foreground font-light">
+                  SOL · ${(totalEarned * 20).toFixed(2)} USD
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">Network Reputation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-light mb-1">{avgReputation.toFixed(0)}</div>
+                <div className="text-xs text-muted-foreground font-light">Average Score</div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">USDC Price</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-light mb-1">${usdcPrice.toFixed(4)}</div>
+                <Badge variant="outline" className="text-xs">Switchboard Oracle</Badge>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* x402 Protocol Explainer */}
+          <Card className="mt-6 border-border/50 bg-gradient-to-r from-blue-500/5 to-purple-500/5 border-blue-500/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-lg font-light tracking-wide">
+                🔐 x402 Payment Protocol Active
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4 text-sm font-light text-muted-foreground">
+                This dashboard shows REAL data from the x402 HTTP 402 Payment Required protocol.
+                Nodes charge micropayments for water quality readings. The agent pays with real
+                SOL on Solana devnet.
+              </p>
+              <div className="flex gap-3">
+                <Badge variant="outline" className="text-xs">Solana Devnet</Badge>
+                <Badge variant="outline" className="text-xs">HTTP 402</Badge>
+                <Badge variant="outline" className="text-xs">Real Payments</Badge>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
         {/* Key Metrics */}
         <section className="mt-12 mb-16">

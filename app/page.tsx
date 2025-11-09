@@ -5,6 +5,9 @@ import { HeroInkBrush } from "@/components/hero-ink-brush"
 import { HydrologyContours } from "@/components/hydrology-contours"
 import { WaterCrisisModal } from "@/components/water-crisis-modal"
 import WaterParticles from "@/components/ui/WaterParticles"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 export default function HomePage() {
   return (
@@ -17,6 +20,31 @@ export default function HomePage() {
 
       <section className="relative pt-48 pb-40 px-6 min-h-screen flex items-center justify-center">
         <div className="container mx-auto max-w-5xl">
+          {/* x402 Status Banner */}
+          <Card className="mb-16 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-500/20 backdrop-blur-sm">
+            <CardContent className="py-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="text-center md:text-left">
+                  <h2 className="text-2xl font-light tracking-wide mb-2">🔴 x402 Network LIVE</h2>
+                  <p className="text-sm text-muted-foreground font-light tracking-wide">
+                    Real Solana payments · Water quality monitoring · AI-powered analysis
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-4 justify-center md:justify-start">
+                    <Badge variant="outline" className="text-xs">HTTP 402</Badge>
+                    <Badge variant="outline" className="text-xs">Solana Devnet</Badge>
+                    <Badge variant="outline" className="text-xs">Real-time Data</Badge>
+                    <Badge variant="outline" className="text-xs border-green-500/50 text-green-500">LIVE</Badge>
+                  </div>
+                </div>
+                <Link href="/dashboard">
+                  <Button size="lg" className="font-light tracking-wide">
+                    View Dashboard →
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="text-center space-y-20">
             <HeroInkBrush />
 

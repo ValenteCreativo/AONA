@@ -7,6 +7,7 @@
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start",
+    "seed": "tsx scripts/seed-nodes.ts",
     "agent": "cd agents/water-analyst && npm install && npm start",
     "agent:dev": "cd agents/water-analyst && npm install && npm run dev"
   },
