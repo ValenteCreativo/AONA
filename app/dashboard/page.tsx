@@ -142,13 +142,19 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+            <Card className="border-border/50 bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border-orange-500/30">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-light tracking-wide text-muted-foreground">USDC Price</CardTitle>
+                <CardTitle className="text-sm font-light tracking-wide flex items-center gap-2">
+                  <span>⛓️</span>
+                  <span className="text-foreground">Switchboard Oracle</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-4xl font-light mb-1">${usdcPrice.toFixed(4)}</div>
-                <Badge variant="outline" className="text-xs">Switchboard Oracle</Badge>
+                <div className="text-4xl font-light mb-1 text-orange-600">${usdcPrice.toFixed(4)}</div>
+                <div className="text-xs text-muted-foreground font-light mb-2">USDC/USD Price</div>
+                <Badge variant="outline" className="text-xs border-orange-500/50 text-orange-600">
+                  On-Chain Data
+                </Badge>
               </CardContent>
             </Card>
           </div>
@@ -170,6 +176,44 @@ export default function DashboardPage() {
                 <Badge variant="outline" className="text-xs">Solana Devnet</Badge>
                 <Badge variant="outline" className="text-xs">HTTP 402</Badge>
                 <Badge variant="outline" className="text-xs">Real Payments</Badge>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Switchboard Oracle Explainer */}
+          <Card className="mt-6 border-border/50 bg-gradient-to-r from-orange-500/5 to-yellow-500/5 border-orange-500/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-lg font-light tracking-wide">
+                ⛓️ Switchboard Oracle Integration
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4 text-sm font-light text-muted-foreground">
+                Real-time price feeds from Switchboard decentralized oracle network on Solana.
+                Provides verifiable on-chain data for USDC/USD pricing used in payment calculations.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-1">Network</p>
+                  <p className="text-sm font-light">Solana Devnet</p>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-1">Oracle Type</p>
+                  <p className="text-sm font-light">Decentralized</p>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-1">Update Frequency</p>
+                  <p className="text-sm font-light">Real-time</p>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-1">Current Price</p>
+                  <p className="text-sm font-light text-orange-600">${usdcPrice.toFixed(4)}</p>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <Badge variant="outline" className="text-xs border-orange-500/50 text-orange-600">Switchboard</Badge>
+                <Badge variant="outline" className="text-xs">On-Chain</Badge>
+                <Badge variant="outline" className="text-xs">Verifiable</Badge>
               </div>
             </CardContent>
           </Card>
