@@ -7,7 +7,6 @@ import { WalletError } from "@solana/wallet-adapter-base";
 
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
 import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
-import { LedgerWalletAdapter } from "@solana/wallet-adapter-ledger";
 
 export function WalletProviders({ children }: { children: ReactNode }) {
   const endpoint = "https://api.devnet.solana.com";
@@ -32,12 +31,6 @@ export function WalletProviders({ children }: { children: ReactNode }) {
       }
     } catch (e) {
       console.log("Solflare no disponible");
-    }
-
-    try {
-      availableWallets.push(new LedgerWalletAdapter());
-    } catch (e) {
-      console.log("Ledger no disponible");
     }
 
     // Si no hay wallets disponibles, devolver una lista mínima
