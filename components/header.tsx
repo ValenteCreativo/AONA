@@ -14,6 +14,7 @@ export function Header() {
     { href: "/", label: "Home" },
     { href: "/dashboard", label: "🔴 Dashboard", highlight: true },
     { href: "/atlas", label: "Atlas" },
+    { href: "/impact", label: "Impact" },
     { href: "/insight", label: "Insight" },
     { href: "/nodes", label: "Nodes" },
     { href: "/alerts", label: "Alerts" },
