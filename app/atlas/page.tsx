@@ -96,7 +96,7 @@ export default function AtlasPage() {
             { label: "Open-Meteo API", icon: "🌐" },
             { label: "USGS Water Services", icon: "💧" },
             { label: "Switchboard Oracle", icon: "⛓️" },
-            { label: "Live", icon: "🔴", accent: "live" }
+            { label: "Live", icon: "🟢", accent: "live" }
           ]}
         />
       </div>

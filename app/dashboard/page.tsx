@@ -100,7 +100,7 @@ export default function DashboardPage() {
               badges={[
                 { label: "Solana Devnet" },
                 { label: "HTTP 402" },
-                { label: "Live Network", icon: "🔴", accent: "live" }
+                { label: "Live Network", icon: "🟢", accent: "live" }
               ]}
               className="max-w-2xl"
             />

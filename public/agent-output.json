@@ -1,15 +1,40 @@
 {
-  "timestamp": 1762752048503,
-  "agentAddress": "2MmwWFoJqDtUnaUtaF7t8Zw9LoKYiXKGV7HdNJ3WZBvH",
-  "totalSpent": 0,
-  "nodesConsulted": 0,
+  "timestamp": 1762762819058,
+  "agentAddress": "49D4249G8XJWCcRu3ER1EusE4wrxnaw89e8Y67zZCnth",
+  "totalSpent": 3000000,
+  "nodesConsulted": 3,
   "alertsGenerated": 0,
   "nodes": [],
-  "payments": [],
+  "payments": [
+    {
+      "node": "node-0001",
+      "nodeName": "Colorado River — Grand County",
+      "signature": "5crrevK3HSc29dUwB7tGF3M88FnhTv1ZaZvhnh92LD4XST3xKz8B8hkt5nvucux466Mp4tZ2MGiPqxP2nQqhTjFY",
+      "amount": 1000000,
+      "sol": 0.001,
+      "timestamp": 1762762822660
+    },
+    {
+      "node": "node-0002",
+      "nodeName": "Mississippi Delta — Plaquemines",
+      "signature": "4i29D2GCifiM2PNK2Ab5CX95CgX525Pt6z5WZRVSaQEFCTq2ysZuztT6a3MabBFQoZqjXfWvDQc3Ajsq5g4XiEQQ",
+      "amount": 1000000,
+      "sol": 0.001,
+      "timestamp": 1762762825937
+    },
+    {
+      "node": "node-0003",
+      "nodeName": "Great Lakes — Lake Michigan",
+      "signature": "4td1LFUyafuw5xQdM9pRv7bPtGrPuUrS3puh7AoV9BojsUTPomeaixkzTsSwbo5utje94cNrm17EX9dagN3VGYoi",
+      "amount": 1000000,
+      "sol": 0.001,
+      "timestamp": 1762762827946
+    }
+  ],
   "summary": {
-    "totalNodes": 0,
-    "totalSpentSOL": 0,
-    "totalSpentLamports": 0,
+    "totalNodes": 3,
+    "totalSpentSOL": 0.003,
+    "totalSpentLamports": 3000000,
     "alertsGenerated": 0,
     "alertsBySeverity": {
       "high": 0,

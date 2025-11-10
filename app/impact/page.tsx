@@ -16,6 +16,14 @@ interface ImpactMetrics {
   nodesActive: number
 }
 
+type AgentOutput = { alertsGenerated?: number } | null
+type NodesResponse = { nodes?: unknown[] } | null
+
+const toNumber = (val: unknown, fallback = 0) => {
+  const n = typeof val === "number" ? val : Number(val)
+  return Number.isFinite(n) ? n : fallback
+}
+
 export default function ImpactPage() {
   const [metrics, setMetrics] = useState<ImpactMetrics>({
     peopleProtected: 0,
@@ -28,28 +36,26 @@ export default function ImpactPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let cancelled = false
+
     async function fetchImpact() {
       try {
-        // Fetch real node and agent data
-        const nodesRes = await aonaAPI.getNodes()
-        const agentData = await aonaAPI.getAgentOutput()
+        // Llamadas independientes con tolerancia a fallos
+        const [nodesRes, agentData]: [NodesResponse, AgentOutput] = await Promise.all([
+          aonaAPI.getNodes().catch(() => null),
+          aonaAPI.getAgentOutput().catch(() => null),
+        ])
 
-        const activeNodes = nodesRes.nodes?.length || 0
-        const alerts = agentData.alertsGenerated || 0
+        const activeNodes = Array.isArray(nodesRes?.nodes) ? nodesRes!.nodes!.length : 0
+        const alerts = toNumber(agentData?.alertsGenerated ?? 0, 0)
 
-        // Calculate real impact metrics based on network activity
-        // Estimate: Each active node protects ~500 people in its watershed
+        // Cálculos
         const peopleProtected = activeNodes * 500
+        const crisisAvoided = Math.floor(alerts * 0.3) // 30% de las alertas previenen crisis
+        const cuencasSaved = Math.min(activeNodes, 3)   // 3 cuencas únicas por ahora
+        const costSaved = crisisAvoided * 50_000
 
-        // Crisis avoided = critical alerts that triggered action
-        const crisisAvoided = Math.floor(alerts * 0.3) // 30% of alerts prevent crisis
-
-        // Watersheds saved = unique basins with active monitoring
-        const cuencasSaved = Math.min(activeNodes, 3) // Currently 3 unique basins
-
-        // Cost saved: $50k per crisis avoided (EPA estimate for contamination response)
-        const costSaved = crisisAvoided * 50000
-
+        if (cancelled) return
         setMetrics({
           peopleProtected,
           crisisAvoided,
@@ -58,17 +64,19 @@ export default function ImpactPage() {
           alertsGenerated: alerts,
           nodesActive: activeNodes
         })
-
-        setLoading(false)
       } catch (error) {
-        console.error('Failed to fetch impact metrics:', error)
-        setLoading(false)
+        console.error("Failed to fetch impact metrics:", error)
+      } finally {
+        if (!cancelled) setLoading(false)
       }
     }
 
     fetchImpact()
-    const interval = setInterval(fetchImpact, 60000) // Refresh every minute
-    return () => clearInterval(interval)
+    const interval = setInterval(fetchImpact, 60_000) // refresh cada minuto
+    return () => {
+      cancelled = true
+      clearInterval(interval)
+    }
   }, [])
 
   const formatCurrency = (value: number) =>
@@ -118,7 +126,7 @@ export default function ImpactPage() {
             { label: "Water Protection", icon: "🌊" },
             { label: "Community Health", icon: "🏘️" },
             { label: "Crisis Prevention", icon: "💰" },
-            { label: "Live Network", icon: "🔴", accent: "live" }
+            { label: "Live Network", icon: "🟢", accent: "live" }
           ]}
         />
       </div>
@@ -208,7 +216,7 @@ export default function ImpactPage() {
             <CardContent>
               <div className="text-4xl font-light mb-1">{metrics.nodesActive}</div>
               <Badge variant="outline" className="text-xs border-green-500/50 text-green-500">
-                🔴 LIVE
+                🟢 LIVE
               </Badge>
             </CardContent>
           </Card>
