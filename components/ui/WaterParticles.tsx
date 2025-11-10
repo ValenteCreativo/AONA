@@ -48,7 +48,7 @@ export default function WaterParticles({ className }: Props) {
           },
           
           opacity: {
-            value: isDark ? 0.3 : 0.22, // ← más brillante
+            value: isDark ? 0.6 : 0.30, // ← más brillante
             animation: {
               enable: true,
               speed: 0.4,

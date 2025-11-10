@@ -12,7 +12,7 @@ export function Header() {
 
   const links = [
     { href: "/", label: "Home" },
-    { href: "/dashboard", label: "Dashboard", highlight: true },
+    { href: "/dashboard", label: "Dashboard"},
     { href: "/atlas", label: "Atlas" },
     { href: "/impact", label: "Impact" },
     { href: "/insight", label: "Insight" },
@@ -42,7 +42,7 @@ export function Header() {
                   className={cn(
                     "text-sm font-extralight tracking-[0.12em] transition-colors duration-500 hover:text-primary",
                     pathname === link.href ? "text-primary" : "text-muted-foreground/70",
-                    link.highlight && "font-normal"
+                    
                   )}
                 >
                   {link.label}
