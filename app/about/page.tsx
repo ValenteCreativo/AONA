@@ -103,19 +103,19 @@ export default function AboutPage() {
               {
                 phase: "Phase 1",
                 title: "Foundation",
-                status: "In Progress",
-                items: ["Front-end scaffold (Complete)", "Design system & UX", "Mock data & visualization"],
+                status: "Done",
+                items: ["Front-end Design & Development", "Design system & UX", "Mock data & visualization"],
               },
               {
                 phase: "Phase 2",
                 title: "Protocol Integration",
-                status: "Next",
+                status: "Done",
                 items: ["x402 micropayment streaming", "Autonomous agent deployment", "Solana onchain integration"],
               },
               {
                 phase: "Phase 3",
                 title: "Network Launch",
-                status: "Planned",
+                status: "Next",
                 items: ["Sensor network deployment", "Data marketplace", "Community governance"],
               },
               {
