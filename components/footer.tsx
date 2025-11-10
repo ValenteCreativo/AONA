@@ -1,5 +1,6 @@
 import { InkBrushDivider } from "./ink-brush-divider"
 import Link from "next/link"
+import Image from "next/image"
 
 const REPO_URL = "https://github.com/ValenteCreativo/AONA"
 
@@ -20,10 +21,15 @@ const NAV_MORE = [
   { label: "Contribute", href: "/contribute" },
   { label: "Coverage", href: "/coverage" },
   { label: "Simulator", href: "/simulator" },
-  { label: "IDL", href: "/idl" },
-  // Si estas rutas son públicas en tu app, descomenta:
-  // { label: "Actions", href: "/actions" },
-  // { label: "API", href: "/api" },
+  { label: "Actions", href: "/actions" },
+  { label: "Models", href: "/models" },
+]
+
+const NAV_TECHNOLOGY = [
+  { label: "Solana IDL", href: "/idl" },
+  { label: "API Docs", href: "/integrate" },
+  { label: "GitHub", href: REPO_URL, external: true },
+  { label: "Alerts", href: "/alerts" },
 ]
 
 export function Footer() {
@@ -31,10 +37,19 @@ export function Footer() {
     <footer className="border-t border-border/20 bg-card/10 backdrop-blur-sm mt-32">
       <InkBrushDivider />
       <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-6xl mx-auto">
           {/* Brand & Mission */}
           <div className="text-center md:text-left space-y-4">
-            <h3 className="text-lg font-extralight tracking-[0.25em]">AONA</h3>
+            <div className="flex items-center gap-3 justify-center md:justify-start">
+              <Image
+                src="/Aona-Favicon.svg"
+                alt="AONA"
+                width={24}
+                height={24}
+                className="opacity-80"
+              />
+              <h3 className="text-lg font-extralight tracking-[0.25em]">AONA</h3>
+            </div>
             <p className="text-sm text-muted-foreground/70 font-extralight leading-loose tracking-wide">
               Water knows. The network translates.
             </p>
@@ -75,7 +90,7 @@ export function Footer() {
           {/* Explore / All pages */}
           <div className="text-center md:text-left">
             <h4 className="text-sm font-extralight tracking-[0.12em] mb-6 text-muted-foreground/80">Explore</h4>
-            <ul className="grid grid-cols-2 gap-y-3 gap-x-6">
+            <ul className="space-y-3">
               {NAV_MORE.map((item) => (
                 <li key={item.href}>
                   <Link
@@ -88,12 +103,40 @@ export function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Technology */}
+          <div className="text-center md:text-left">
+            <h4 className="text-sm font-extralight tracking-[0.12em] mb-6 text-muted-foreground/80">Technology</h4>
+            <ul className="space-y-3">
+              {NAV_TECHNOLOGY.map((item) => (
+                <li key={item.href}>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground/70 hover:text-primary transition-colors duration-300 font-extralight tracking-wide"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="text-sm text-muted-foreground/70 hover:text-primary transition-colors duration-300 font-extralight tracking-wide"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Bottom line */}
         <div className="mt-16 pt-8 border-t border-border/10 text-center space-y-2">
           <p className="text-xs text-muted-foreground/60 font-extralight tracking-[0.15em]">
-            Autonomous Oracles for Networked Aquatic Systems
+            Autonomous Intelligence for Water Security
           </p>
           <p className="text-xs text-muted-foreground/50 font-extralight tracking-[0.18em]">
             From México with 💙

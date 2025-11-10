@@ -9,11 +9,22 @@ import { Footer } from "@/components/footer";
 import { WalletProviders } from "@/app/providers/solana/WalletProviders";
 
 export const metadata: Metadata = {
-  title: "AONA - Autonomous Oracles for Networked Aquatic Systems",
-  description: "Water knows. The network translates.",
+  title: "AONA - Autonomous Intelligence for Water Security",
+  description: "Blockchain-powered early warning system for planetary hydrology. Real-time water quality monitoring with AI agents, Solana blockchain, and HTTP 402 protocol.",
   icons: {
-    icon: "/Aona-Favicon-white.svg",
-    apple: "/Aona-Favicon-white.svg",
+    icon: "/Aona-Favicon.svg",
+    shortcut: "/Aona-Favicon.svg",
+    apple: "/Aona-Favicon.svg",
+  },
+  openGraph: {
+    title: "AONA - Autonomous Intelligence for Water Security",
+    description: "Decentralized water quality monitoring with AI agents on Solana blockchain",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AONA - Autonomous Intelligence for Water Security",
+    description: "Blockchain-powered early warning system for planetary hydrology",
   },
 };
 
