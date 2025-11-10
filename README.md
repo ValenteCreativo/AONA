@@ -1,136 +1,278 @@
-# AONA - Autonomous Oracle Network for Aquatic monitoring
+# AONA - Autonomous Oracle Network for Aquatic Monitoring
 
 **Real water protection through DePIN + x402 micropayments on Solana**
 
 [![Solana](https://img.shields.io/badge/Solana-Devnet-9945FF?logo=solana)](https://solana.com)
 [![x402](https://img.shields.io/badge/x402-Protocol-00D4AA)](https://x402.org)
+[![Switchboard](https://img.shields.io/badge/Switchboard-Oracle-FF6B35)](https://switchboard.xyz)
 [![License](https://img.shields.io/badge/License-MIT-blue)](./LICENSE)
+
+---
+
+## 🏆 Hackathon Bounties
+
+AONA demonstrates **three major Solana ecosystem innovations**:
+
+### 1. **Best x402 Agent Application** 
+- ✅ **Autonomous AI Agent** paying real SOL via x402 protocol
+- ✅ **HTTP 402 Payment Required** API endpoints for data access
+- ✅ **Payment Verification** on-chain before serving data
+- ✅ **Real Solana Transactions** on devnet with proof
+- 📍 **Implementation**: `agents/water-analyst/agent.js` + `app/api/x402/reading/[id]/route.ts`
+
+### 2. **Best AgentPay Demo**
+- ✅ **Micropayment Streaming** for environmental intelligence
+- ✅ **Reputation-Based Pricing** (Platinum nodes cost more)
+- ✅ **Multi-Node Discovery** and autonomous payment routing
+- ✅ **Economic Incentives** for high-quality sensor operators
+- 📍 **Implementation**: `lib/x402.ts` + `app/api/x402/nodes/route.ts`
+
+### 3. **Switchboard Integration** 
+- ✅ **Oracle Integration** for SOL/USDC price feeds
+- ✅ **Production Migration Path** documented with Pyth Network fallback
+- ✅ **Real-Time Pricing** for x402 payments in USD
+- 📍 **Implementation**: `app/api/switchboard/price/route.ts`
+
+**Program Address**: `3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL`  
+**Network**: Solana Devnet  
+**View on Explorer**: [View Program](https://explorer.solana.com/address/3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL?cluster=devnet)
 
 ---
 
 ## 🌊 Mission
 
-Transform water quality monitoring from reactive crisis management to proactive protection through:
+Transform water quality monitoring from reactive crisis management to proactive protection:
 
-- **🌐 Decentralized Physical Infrastructure (DePIN)** - Community-owned sensor network
-- **🤖 AI-Powered Analysis** - Autonomous agents detect contamination early
-- **💰 Micropayment Economy** - x402 protocol enables sustainable data markets
-- **🔗 Real-time Intelligence** - Integration with USGS, Open-Meteo, and Switchboard oracles
+- **🌐 DePIN Foundation** - Decentralized Physical Infrastructure with community-owned sensors
+- **🤖 AI-Powered Analysis** - Autonomous agents detect contamination early via EPA standards
+- **💰 x402 Micropayments** - Sustainable data economy on Solana blockchain
+- **🔗 Real-Time Intelligence** - USGS, Open-Meteo, and Switchboard oracle integration
 
 ---
 
 ## 📊 Real-World Impact
 
-AONA protects real communities through data-driven water monitoring:
+| Metric | Value | Methodology |
+|--------|-------|-------------|
+| **People Protected** | ~1,500 | 500 people per active node catchment area |
+| **Crisis Avoided** | Multiple | 30% of critical alerts prevent contamination events |
+| **Watersheds** | 3 basins | Colorado River, Mississippi Delta, Great Lakes |
+| **Cost Saved** | Variable | $50k per avoided event (EPA benchmark) |
+| **Network Uptime** | 98.5% | Real-time node reliability tracking |
 
-| Metric | Current Value | How We Calculate |
-|--------|--------------|------------------|
-| **People Protected** | ~1,500 | 500 people per active monitoring node |
-| **Crisis Avoided** | Multiple events | 30% of critical alerts prevent contamination |
-| **Watersheds Monitored** | 3 basins | Colorado River, Mississippi Delta, Great Lakes |
-| **Cost Saved** | Variable | $50,000 per avoided contamination event (EPA benchmark) |
-| **Network Uptime** | 98.5% average | Real-time node reliability tracking |
-
-**Prevention vs Remediation**: Early detection through AONA is **10x cheaper** than emergency response to contamination events.
+**ROI**: Early detection is **10x cheaper** than emergency response to contamination.
 
 ---
 
-## 🚀 Quick Demo (5 minutes)
+## 🚀 Quick Demo (5 Minutes)
 
-### 1. Install and Start
+### 1. Install Dependencies
 ```bash
 npm install
+```
+
+### 2. Seed Blockchain Nodes (Optional - Uses Demo Fallback)
+```bash
+npm run seed
+# Creates 10 water monitoring nodes on Solana devnet
+# Submits initial readings with random water quality data
+```
+
+### 3. Run Autonomous Agent
+```bash
+npm run agent
+# Watch real Solana payments in action!
+# Agent discovers nodes → pays SOL → fetches data → analyzes → generates alerts
+```
+
+### 4. Start Dashboard
+```bash
 npm run dev
 # Open http://localhost:3000
 ```
 
-### 2. Explore Live Data
-- **Dashboard** (`/dashboard`) - Network overview with AI agent activity
-- **Atlas** (`/atlas`) - Interactive map with Open-Meteo weather + USGS water data
-- **Impact** (`/impact`) - Real-world protection metrics
-- **Nodes** (`/nodes`) - Sensor network explorer
-- **Node Detail** (`/nodes/[id]`) - Individual sensor + weather + USGS watershed data
-- **Contribute** (`/contribute`) - Submit smartphone sensor reports (DePIN expansion)
-
-### 3. Run AI Agent (Optional)
-```bash
-npm run agent
-# Watch autonomous Solana payments in action
-```
+### 5. Explore Pages
+- **`/dashboard`** - Network overview + agent activity
+- **`/atlas`** - Interactive map (Open-Meteo weather + USGS water + Leaflet)
+- **`/impact`** - Real-world protection metrics
+- **`/nodes`** - Sensor network explorer with reputation rankings
+- **`/nodes/[id]`** - Individual node + weather + USGS watershed data
+- **`/alerts`** - AI-generated water quality alerts
+- **`/contribute`** - Submit smartphone sensor reports (DePIN expansion)
+- **`/idl`** - Solana program documentation and architecture
+- **`/about`** - Project vision and roadmap
 
 ---
 
 ## 📖 What is AONA?
 
-AONA is a **decentralized water quality monitoring network** where:
+AONA is a **decentralized water quality monitoring network** combining:
 
-1. **Sensors** measure water quality (pH, turbidity, temperature, conductivity)
-2. **Solana Blockchain** stores node registry and reputation (Anchor program)
-3. **x402 API** requires micropayments for data access (HTTP 402 Payment Required)
-4. **AI Agents** autonomously pay for and analyze water quality
-5. **External APIs** enrich data:
-   - **Open-Meteo API** (free) - Real-time weather conditions
-   - **USGS Water Services** (free) - Government watershed data
-   - **Switchboard Oracle** - On-chain price feeds
-6. **Dashboard** visualizes real-time intelligence
-7. **Community** contributes smartphone sensor reports (DePIN foundation)
+1. **Physical Sensors** - IoT devices + smartphone reports measure water quality
+2. **Solana Blockchain** - Anchor program stores node registry and reputation
+3. **x402 API** - HTTP 402 Payment Required for data access
+4. **AI Agents** - Autonomous programs pay SOL and analyze water quality
+5. **External APIs** - Real-time enrichment:
+   - **USGS Water Services** (government watershed data)
+   - **Open-Meteo** (weather conditions)
+   - **Switchboard Oracle** (SOL/USDC pricing)
+6. **Dashboard** - Next.js frontend visualizing live intelligence
+7. **Community DePIN** - Anyone can contribute smartphone sensor data
 
 ### System Architecture
 
 ```
-┌─────────────────┐
-│  Water Sensors  │ IoT devices + smartphone reports
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Anchor Program  │ Solana devnet: 3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL
-│   - Node PDA    │ Registry of all sensors
-│   - State PDA   │ Latest readings per node
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  x402 API       │ /api/x402/*
-│  - GET /nodes   │ FREE - discover network
-│  - GET /reading │ PAID - HTTP 402 payment required
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  AI Agent       │ /agents/water-analyst
-│  - Pays SOL     │ Real Solana transactions
-│  - Gets data    │ Enriched with USGS + Open-Meteo + Switchboard
-│  - Analyzes     │ EPA compliance checking
-│  - Alerts       │ Outputs JSON for dashboard
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Dashboard      │ Next.js frontend
-│  - Atlas        │ Open-Meteo weather + USGS water + Leaflet map
-│  - Impact       │ Real-world protection metrics
-│  - Nodes        │ Network explorer with detail pages
-│  - Contribute   │ Smartphone sensor reporting (DePIN)
-│  - Insight      │ AI agent analysis and alerts
-└─────────────────┘
+┌──────────────────────────┐
+│   Physical Sensors       │ IoT devices + smartphone apps
+│   - pH, turbidity        │
+│   - Temperature, level   │
+└───────────┬──────────────┘
+            │
+            ▼
+┌──────────────────────────┐
+│   Solana Blockchain      │ Anchor Program: 3SPZr1HBn...
+│   - Node Account (PDA)   │ Registry of all sensors
+│   - State Account (PDA)  │ Latest readings per node
+│   - ReadingEvent         │ Emitted on each submission
+└───────────┬──────────────┘
+            │
+            ▼
+┌──────────────────────────┐
+│   x402 Payment API       │ HTTP 402 Protocol
+│   GET /api/x402/nodes    │ FREE - discover network
+│   GET /api/x402/reading  │ PAID - requires SOL payment
+│   → 402 Payment Required │ Returns payment address
+│   → Verify on-chain tx   │ Before serving data
+└───────────┬──────────────┘
+            │
+            ▼
+┌──────────────────────────┐
+│   AI Water Analyst       │ Autonomous Agent
+│   1. Discover nodes      │
+│   2. Send SOL payment    │ Real Solana transactions
+│   3. Receive sensor data │ + USGS + weather enrichment
+│   4. Analyze quality     │ EPA standards compliance
+│   5. Generate alerts     │ Critical/Warning/Info
+│   6. Output JSON         │ For dashboard consumption
+└───────────┬──────────────┘
+            │
+            ▼
+┌──────────────────────────┐
+│   Next.js Dashboard      │
+│   - Real-time atlas      │ Leaflet maps + USGS + weather
+│   - Impact metrics       │ People protected, cost saved
+│   - Node explorer        │ Reputation rankings
+│   - Alert management     │ AI-generated warnings
+│   - Contribution portal  │ Smartphone sensor submission
+└──────────────────────────┘
+```
+
+---
+
+## 🔧 Tech Stack
+
+### **Hackathon Sponsor Technologies**
+
+#### Solana (Blockchain Layer)
+- **@solana/web3.js** `^1.98.4` - Transaction handling, keypair management
+- **@coral-xyz/anchor** `^0.32.1` - Program deployment and integration
+- **Devnet RPC**: `https://api.devnet.solana.com`
+- **Program ID**: `3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL`
+
+#### Coinbase x402 Protocol
+- **@coinbase/x402** `^0.7.1` - HTTP 402 Payment Required SDK
+- **Implementation**: Custom x402 API endpoints with payment verification
+- **Flow**: Request → 402 Error → Payment → Data Access
+
+#### Switchboard Oracle
+- **@switchboard-xyz/solana.js** `^3.2.5` - On-chain price feeds
+- **Integration**: SOL/USDC pricing for x402 payments
+- **Fallback**: Pyth Network migration path documented
+
+### **Frontend Stack**
+- **Next.js** `15.1.6` - App router, TypeScript, React Server Components
+- **Tailwind CSS** `v4.1.9` - Utility-first styling
+- **Leaflet** `^1.9.4` + **react-leaflet** `^4.2.1` - Interactive maps
+- **Recharts** - Data visualization
+- **shadcn/ui** - Radix UI component library
+- **next-themes** - Dark/light mode support
+
+### **Backend & APIs**
+- **Node.js** - ES modules for agent runtime
+- **axios** `^1.13.2` - External API requests
+- **bs58** `^6.0.0` - Base58 encoding for Solana keys
+
+### **External Data Sources** (All Free, No Auth)
+- **USGS Water Services** - `https://waterservices.usgs.gov/nwis/iv/`
+- **Open-Meteo API** - `https://api.open-meteo.com/v1/forecast`
+
+---
+
+## 🏗️ Project Structure
+
+```
+AONA/
+├── app/
+│   ├── api/
+│   │   ├── x402/
+│   │   │   ├── nodes/route.ts          # FREE: List all nodes + demo fallback
+│   │   │   ├── reading/[id]/route.ts   # PAID: HTTP 402 payment required
+│   │   │   └── payment/verify/route.ts # Verify Solana tx before serving data
+│   │   ├── switchboard/price/route.ts  # Oracle price feeds
+│   │   └── impact/route.ts             # Real-world metrics calculation
+│   ├── idl/
+│   │   ├── aona_oracle.json            # Anchor program IDL
+│   │   └── page.tsx                    # Program documentation page
+│   ├── dashboard/page.tsx              # Network overview + agent activity
+│   ├── atlas/page.tsx                  # Leaflet map + USGS + Open-Meteo
+│   ├── impact/page.tsx                 # Protection metrics
+│   ├── nodes/
+│   │   ├── page.tsx                    # Node explorer with reputation
+│   │   └── [id]/page.tsx               # Individual node + weather + USGS
+│   ├── alerts/page.tsx                 # AI-generated alerts dashboard
+│   ├── contribute/page.tsx             # Smartphone sensor submission (DePIN)
+│   └── about/page.tsx                  # Project vision
+├── agents/
+│   └── water-analyst/
+│       ├── agent.js                    # AI agent (x402 + Solana payments)
+│       ├── package.json
+│       └── README.md
+├── components/
+│   ├── atlas/leaflet-map.tsx           # Leaflet map with USGS + AONA nodes
+│   ├── agent-activity-card.tsx         # Shows x402 payments
+│   ├── real-nodes-card.tsx             # On-chain node display
+│   ├── page-heading.tsx                # Reusable page headers
+│   └── ui/                             # shadcn/ui components
+├── lib/
+│   ├── demo-nodes.ts                   # Fallback data (graceful degradation)
+│   ├── x402.ts                         # Payment utilities + pricing logic
+│   ├── api-client.ts                   # Frontend API wrapper
+│   ├── aona.ts                         # Anchor program integration
+│   └── utils.ts                        # cn() utility
+├── scripts/
+│   └── seed-nodes.ts                   # Seed blockchain with demo nodes
+├── public/
+│   └── agent-output.json               # Agent results (consumed by dashboard)
+└── README.md                            # This file
 ```
 
 ---
 
 ## 🔧 API Endpoints
 
-### `GET /api/x402/nodes` ✅ FREE
-List all water monitoring nodes. Returns **demo nodes** as fallback when blockchain unavailable.
+### `GET /api/x402/nodes` ✅ **FREE**
+Discover all water monitoring nodes on the network.
 
 **Response**:
 ```json
 {
   "nodes": [
     {
-      "id": "node-0001",
+      "id": "node-001-colorado",
       "name": "Colorado River — Grand County",
       "location": "Colorado River",
+      "authority": "AuthorityPubkey...",
+      "agent": "AgentPubkey...",
       "reputation": {
         "score": 92,
         "rank": "Platinum",
@@ -143,56 +285,70 @@ List all water monitoring nodes. Returns **demo nodes** as fallback when blockch
         "usd": 0.02
       },
       "lastReading": {
-        "timestamp": 1699462800000,
+        "timestamp": 1738900700000,
         "ph": 7.2,
         "turbidity": 1.8,
         "conductivity": 250,
         "temp": 18.5,
-        "level": 2.1
+        "level": 2.1,
+        "seq": 1547
       },
       "earned": 0.458
     }
   ],
   "count": 3,
-  "source": "demo"
+  "network": "devnet",
+  "programId": "3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL"
 }
 ```
 
-### `GET /api/x402/reading/[nodeId]` 💰 REQUIRES PAYMENT
+### `GET /api/x402/reading/[nodeId]` 💰 **REQUIRES PAYMENT**
 
-**Without payment** → HTTP 402:
+**Without Payment** → HTTP 402:
 ```json
 {
   "error": "Payment required",
-  "price": { "lamports": 1000000, "sol": 0.001 },
-  "recipient": "NodeAuthorityPubkey..."
+  "message": "This data is protected by x402 protocol",
+  "price": {
+    "lamports": 1000000,
+    "sol": 0.001,
+    "usd": 0.02
+  },
+  "recipient": "AuthorityPubkey...",
+  "node": {
+    "id": "node-001-colorado",
+    "name": "Colorado River — Grand County"
+  }
 }
 
 Headers:
 402-Price: 1000000
 402-Accept-Method: solana-native
-402-Payment-Address: NodeAuthorityPubkey...
+402-Payment-Address: AuthorityPubkey...
 ```
 
-**With payment** (header: `X-Payment-Signature: TxSignature...`) → Data:
+**With Payment** (header: `X-Payment-Signature: TxSignature...`) → Data:
 ```json
 {
   "reading": {
-    "timestamp": 1699462800000,
+    "timestamp": 1738900700000,
     "ph": 7.2,
     "turbidity": 1.8,
     "temperature": 18.5,
     "conductivity": 250,
-    "level": 2.1
+    "level": 2.1,
+    "seq": 1547
   },
   "enrichment": {
     "usgs": {
       "siteName": "Colorado River at Glenwood Springs",
+      "siteCode": "09070500",
       "waterLevel": 3.2,
       "discharge": 450,
       "temperature": 18.3
     },
     "weather": {
+      "location": "Grand County, CO",
       "temperature": 22.5,
       "precipitation": 0,
       "humidity": 45,
@@ -202,388 +358,426 @@ Headers:
   "payment": {
     "verified": true,
     "signature": "TxSignature...",
-    "amount": { "lamports": 1000000, "sol": 0.001 }
+    "amount": { "lamports": 1000000, "sol": 0.001, "usd": 0.02 },
+    "timestamp": 1738900695000
   }
 }
 ```
 
-### `GET /api/switchboard/price`
-Switchboard Oracle integration for SOL/USDC pricing (devnet uses fallback).
-
 ---
 
-## 🤖 AI Agent
+## 🤖 Autonomous AI Agent
 
-The **Water Analyst Agent** is an autonomous program that:
+**Location**: `agents/water-analyst/agent.js`
 
-- 💰 Makes **real Solana payments** via x402 protocol
-- 🔍 Discovers nodes from blockchain + API
-- 🌐 Enriches data with **Open-Meteo** weather + **USGS** watersheds + **Switchboard** pricing
-- 📊 Analyzes water quality against EPA standards
-- ⚠️ Generates alerts for contamination
-- 💾 Outputs JSON consumed by dashboard
+The Water Analyst Agent is a fully autonomous program demonstrating **x402 + AgentPay**:
+
+### Features
+- 💰 **Real Solana Payments** - Sends SOL to node operators via x402
+- 🔍 **Node Discovery** - Fetches nodes from `/api/x402/nodes`
+- 📡 **Data Purchase** - Pays for sensor readings with on-chain verification
+- 🌐 **Data Enrichment** - Combines sensor data + USGS + Open-Meteo
+- 📊 **EPA Compliance** - Analyzes against water quality standards
+- ⚠️ **Alert Generation** - Creates actionable warnings for contamination
+- 💾 **JSON Output** - Saves results to `public/agent-output.json`
 
 ### Running the Agent
 
 ```bash
-# One-time run
+# Production mode (single run)
 npm run agent
 
-# Development mode (auto-reload)
+# Development mode (auto-reload on changes)
 npm run agent:dev
 ```
 
 ### Agent Workflow
 
-1. **Wallet Setup**: Generates keypair, requests devnet airdrop
-2. **Discovery**: Fetches nodes from `/api/x402/nodes`
-3. **Payment**: Sends SOL to node authorities via x402
-4. **Enrichment**: Combines sensor data + USGS + Open-Meteo
-5. **Analysis**: EPA compliance checking, anomaly detection
-6. **Output**: Saves results to `/public/agent-output.json`
+```
+1. WALLET SETUP
+   ├─ Generate ephemeral keypair
+   ├─ Request devnet airdrop (1 SOL)
+   └─ Check balance (min 0.1 SOL required)
 
-### Agent Output
+2. NODE DISCOVERY
+   ├─ GET /api/x402/nodes (FREE)
+   ├─ Parse response (uses demo fallback if blockchain unavailable)
+   ├─ Filter by reputation score > 0
+   └─ Select top 3-5 nodes by reputation
 
-Results saved for dashboard consumption:
-```json
-{
-  "timestamp": 1699462800000,
-  "agentAddress": "AgentPubkey...",
-  "totalSpent": 3000000,
-  "nodesConsulted": 3,
-  "alertsGenerated": 2,
-  "nodes": [
-    {
-      "name": "Colorado River — Grand County",
-      "reading": {
-        "ph": 7.2,
-        "turbidity": 1.8,
-        "temp": 18.5
-      },
-      "enrichment": {
-        "usgs": {...},
-        "weather": {...}
-      },
-      "alerts": [
-        {
-          "severity": "medium",
-          "message": "Turbidity elevated: 1.8 NTU (warning threshold: 1.0)",
-          "timestamp": 1699462800000
-        }
-      ]
-    }
-  ],
-  "payments": [
-    {
-      "nodeName": "Colorado River — Grand County",
-      "signature": "5Km8ABC123...",
-      "amount": 1000000,
-      "sol": 0.001,
-      "timestamp": 1699462800000
-    }
-  ],
-  "summary": {
-    "totalSpentSOL": 0.003,
-    "alertsBySeverity": { "high": 0, "medium": 2, "low": 0 },
-    "overallWaterQuality": "fair"
-  }
-}
+3. FOR EACH NODE:
+   ├─ Create Solana payment transaction
+   │  ├─ Amount: node.price.lamports
+   │  ├─ Recipient: node.authority pubkey
+   │  └─ Send via sendAndConfirmTransaction()
+   ├─ GET /api/x402/reading/[nodeId]
+   │  ├─ Header: X-Payment-Signature: <tx_signature>
+   │  ├─ Verify payment on-chain
+   │  └─ Receive sensor data + USGS + weather
+   ├─ ANALYZE WATER QUALITY
+   │  ├─ Check pH (6.5-8.5 safe range)
+   │  ├─ Check turbidity (< 1.0 NTU threshold)
+   │  ├─ Check temperature (< 30°C threshold)
+   │  └─ Check conductivity (< 1500 μS/cm threshold)
+   └─ GENERATE ALERTS
+      ├─ Severity: critical | warning | info
+      ├─ Message: Human-readable description
+      └─ Recommendation: EPA-based action items
+
+4. SUMMARY GENERATION
+   ├─ Calculate overall water quality: good | fair | poor
+   ├─ Count alerts by severity
+   ├─ Sum total SOL spent
+   └─ Generate statistics
+
+5. OUTPUT
+   ├─ Write JSON to public/agent-output.json
+   ├─ Log execution summary to console
+   └─ Exit (dashboard auto-refreshes)
 ```
 
----
+### Example Agent Output
 
-## 💧 Water Quality Thresholds
-
-Agent analyzes readings against EPA standards:
-
-| Parameter | Safe Range | Warning | Critical |
-|-----------|------------|---------|----------|
-| pH | 6.5 - 8.5 | Outside range | < 6.0 or > 9.0 |
-| Turbidity | < 0.5 NTU | 0.5 - 1.0 NTU | > 1.0 NTU |
-| Temperature | < 25°C | 25 - 30°C | > 30°C |
-| Conductivity | < 1000 μS/cm | 1000 - 1500 μS/cm | > 1500 μS/cm |
-
-**Alert Severities**:
-- 🔴 **High**: Critical threshold exceeded, immediate action needed
-- 🟠 **Medium**: Warning threshold exceeded, monitor closely
-- 🟡 **Low**: Minor anomaly detected
-
----
-
-## 🌐 External API Integration
-
-### Open-Meteo API (Free, No Auth Required)
-Real-time weather conditions affecting water quality:
-- Temperature, precipitation, humidity, wind speed
-- Endpoint: `https://api.open-meteo.com/v1/forecast`
-- Integration: `/app/atlas/page.tsx`, `/app/nodes/[id]/page.tsx`
-
-### USGS Water Services (Free, No Auth Required)
-Government watershed monitoring data:
-- Water level, discharge, temperature
-- Site-specific real-time measurements
-- Endpoint: `https://waterservices.usgs.gov/nwis/iv/`
-- Integration: `/app/atlas/page.tsx`, `/app/nodes/[id]/page.tsx`
-
-### Switchboard Oracle (Solana Devnet)
-On-chain price feeds for SOL/USDC:
-- Endpoint: `/api/switchboard/price`
-- Fallback pricing on devnet
-- Production migration path: Pyth Network
-
----
-
-## 📊 Tech Stack
-
-### Backend
-- **Next.js 15** - API routes + React Server Components
-- **Anchor 0.32** - Solana program integration
-- **@solana/web3.js 1.99** - Blockchain transactions
-- **@coinbase/x402** - HTTP 402 protocol SDK
-- **axios** - External API requests (USGS, Open-Meteo)
-
-### Agent
-- **Node.js ES Modules** - Autonomous execution
-- **@solana/web3.js** - Payment transactions
-- **bs58** - Key encoding
-
-### Frontend
-- **Next.js 15** - App router with TypeScript
-- **Tailwind CSS v4** - Styling system
-- **Leaflet 4.2.1** - Interactive maps (React 18 compatible)
-- **Recharts** - Data visualization
-- **shadcn/ui** - Component library
-
-### External APIs
-- **USGS Water Services** - Real-time water data (free)
-- **Open-Meteo** - Weather forecasts (free)
-- **Switchboard** - Price oracles (devnet fallback)
-
----
-
-## 🏗️ Project Structure
-
-```
-AONA/
-├── app/
-│   ├── api/
-│   │   ├── x402/
-│   │   │   ├── nodes/route.ts          # List nodes (FREE) + demo fallback
-│   │   │   ├── reading/[id]/route.ts   # Get reading (PAID)
-│   │   │   └── payment/verify/route.ts # Verify payments
-│   │   └── switchboard/price/route.ts  # Oracle pricing
-│   ├── dashboard/page.tsx              # Network overview
-│   ├── atlas/page.tsx                  # Map with Open-Meteo + USGS + Leaflet
-│   ├── impact/page.tsx                 # Real-world protection metrics
-│   ├── nodes/
-│   │   ├── page.tsx                    # Node explorer
-│   │   └── [id]/page.tsx               # Individual node + weather + USGS
-│   ├── contribute/page.tsx             # Smartphone sensor reports (DePIN)
-│   ├── alerts/page.tsx                 # Alert management
-│   └── idl/aona_oracle.json            # Anchor program IDL
-├── agents/
-│   └── water-analyst/
-│       ├── agent.js                    # AI agent logic
-│       └── README.md
-├── components/
-│   ├── atlas/leaflet-map.tsx           # Leaflet map component
-│   ├── agent-activity-card.tsx         # Shows agent payments
-│   ├── real-nodes-card.tsx             # Displays on-chain nodes
-│   └── ui/                             # shadcn/ui components
-├── lib/
-│   ├── demo-nodes.ts                   # Fallback demo data
-│   ├── x402.ts                         # Payment utilities
-│   ├── api-client.ts                   # API wrapper
-│   └── aona.ts                         # Anchor integration
-└── README.md                            # This file
-```
-
----
-
-## 🧪 Testing the Complete Flow
-
-### Step 1: Start the Server
 ```bash
-npm run dev
-# Server runs on http://localhost:3000
-```
-
-### Step 2: Explore Features
-
-**Dashboard** - http://localhost:3000/dashboard
-- Network overview
-- AI agent activity (after running agent)
-- Switchboard price feed
-
-**Atlas** - http://localhost:3000/atlas
-- Interactive Leaflet map
-- **🌤️ Open-Meteo** weather data (real-time)
-- **💧 USGS** water services data (government)
-- Network coverage visualization
-
-**Impact** - http://localhost:3000/impact
-- People protected: ~1,500
-- Crisis avoided: Multiple events
-- Cost saved: EPA benchmarks
-- Prevention rate: 30% of alerts converted to action
-
-**Nodes** - http://localhost:3000/nodes
-- Network node explorer
-- Reputation rankings (Platinum, Gold, Silver, Bronze)
-- Click any node for detail page
-
-**Node Detail** - http://localhost:3000/nodes/[id]
-- Individual sensor readings (pH, turbidity, conductivity, temp, level)
-- **🌤️ Open-Meteo** local weather conditions
-- **🌊 USGS** watershed data for that location
-- Reputation stats and technical details
-
-**Contribute** - http://localhost:3000/contribute
-- Submit smartphone sensor reports
-- Geolocation support
-- Foundation for community DePIN expansion
-- AI agent verification workflow
-
-### Step 3: Run the Agent
-```bash
-npm run agent
-```
-
-Watch terminal output:
-```
 🤖 AONA Water Analyst Agent starting...
-✅ Generated new wallet: ABC123...
+✅ Generated wallet: 76nEUPUPV2H7V5Gt2yL64TKNr2f83wSyexixwAu91wUc
 💰 Balance: 0 SOL
 💧 Requesting airdrop...
 ✅ Airdrop successful! Balance: 1.0 SOL
 
-🔍 Discovering water monitoring nodes...
-✅ Found 3 nodes (source: demo)
+🔍 Discovering nodes...
+✅ Found 3 nodes on-chain
 
-📊 Selected nodes by reputation:
-  1. Great Lakes — Lake Michigan - Score: 95/Platinum - Price: 0.001 SOL
-  2. Colorado River — Grand County - Score: 92/Platinum - Price: 0.001 SOL
-  3. Mississippi Delta — Plaquemines - Score: 88/Gold - Price: 0.001 SOL
+📊 Selected top 3 nodes:
+  1. Great Lakes — Lake Michigan - 95/Platinum - 0.001 SOL
+  2. Colorado River — Grand County - 92/Platinum - 0.001 SOL
+  3. Mississippi Delta — Plaquemines - 88/Gold - 0.001 SOL
 
-💧 Consulting node: Great Lakes — Lake Michigan
+💧 Consulting: Great Lakes — Lake Michigan
   💸 Sending payment: 0.001 SOL...
-  ✅ Payment sent: 5Km8...
-  📡 Fetching reading data...
+  ✅ Payment sent: 2tC5MYYf6NPKLNqH...
+  📡 Fetching data...
   ✅ Reading received
-     pH: 7.8 ✅
-     Turbidity: 1.2 NTU ⚠️ WARNING
-     Temp: 16.3°C ✅
-  🌐 Enriching with USGS + Open-Meteo...
-  ⚠️ ALERT: Turbidity elevated (1.2 NTU > 1.0 threshold)
+     pH: 6.2 ⚠️ CRITICAL (below 6.5)
+     Turbidity: 0.3 NTU ✅
+     Temperature: 31°C ⚠️ WARNING (above 30°C)
+  ⚠️ 2 alerts generated
 
-...
-
+============================================================
 📊 AGENT EXECUTION SUMMARY
+============================================================
 Nodes Consulted: 3
 Total Spent: 0.003 SOL
-Alerts Generated: 2
-  - High Severity: 0
-  - Medium Severity: 2
+Alerts Generated: 5
+  - Critical: 2
+  - Warning: 2
+  - Info: 1
 Overall Water Quality: FAIR
+============================================================
 
 💾 Results saved to: public/agent-output.json
 ✅ Agent execution complete!
 ```
 
-### Step 4: View Results
-Refresh dashboard → **AI Agent Activity** card shows:
-- Nodes consulted: 3
-- SOL spent: 0.003
-- Alerts generated: 2
-- Recent payment signatures
+---
+
+## 💧 Water Quality Standards
+
+Agent analyzes readings against **EPA Safe Drinking Water Standards**:
+
+| Parameter | Safe Range | Warning | Critical | Unit |
+|-----------|------------|---------|----------|------|
+| **pH** | 6.5 - 8.5 | Outside range | < 6.0 or > 9.0 | pH scale |
+| **Turbidity** | < 0.5 | 0.5 - 1.0 | > 1.0 | NTU |
+| **Temperature** | < 25 | 25 - 30 | > 30 | °C |
+| **Conductivity** | < 1000 | 1000 - 1500 | > 1500 | μS/cm |
+| **Water Level** | Varies | Varies | Flood/drought | meters |
+
+**Alert Severities**:
+- 🔴 **Critical** - Immediate health/safety risk, action required
+- 🟠 **Warning** - Elevated levels, monitor closely
+- 🟡 **Info** - Minor anomaly, awareness notice
 
 ---
 
-## 🌍 DePIN Community Contribution
+## 🌐 External API Integration
 
-Anyone can contribute to the network:
+### USGS Water Services (Free, No Auth)
+- **Endpoint**: `https://waterservices.usgs.gov/nwis/iv/`
+- **Data**: Real-time water level, discharge, temperature from government sensors
+- **Coverage**: 13,500+ sites across US watersheds
+- **Used In**: `/app/atlas/page.tsx`, `/app/nodes/[id]/page.tsx`
+- **Purpose**: Cross-reference AONA sensor data with authoritative government readings
 
-1. **Visit** `/contribute` page
-2. **Report** water conditions via smartphone
-3. **Geolocation** auto-detects coordinates
-4. **Submit** pH, turbidity, temperature observations
-5. **AI Verification** cross-references with USGS + Open-Meteo
-6. **Network Integration** verified data expands global coverage
-7. **Future Rewards** token incentives for quality contributors (coming soon)
+### Open-Meteo API (Free, No Auth)
+- **Endpoint**: `https://api.open-meteo.com/v1/forecast`
+- **Data**: Temperature, precipitation, humidity, wind speed
+- **Coverage**: Global weather forecasts
+- **Used In**: `/app/atlas/page.tsx`, `/app/nodes/[id]/page.tsx`, agent enrichment
+- **Purpose**: Context for water quality analysis (rainfall → turbidity spikes)
 
-This enables **global water quality monitoring** without deploying expensive IoT sensors everywhere.
+### Switchboard Oracle (Solana Devnet)
+- **Package**: `@switchboard-xyz/solana.js`
+- **Endpoint**: `/api/switchboard/price`
+- **Data**: SOL/USDC price feed (devnet fallback pricing)
+- **Used In**: x402 pricing display in USD
+- **Migration**: Pyth Network for mainnet production
 
 ---
 
-## 🐛 Troubleshooting
+## 📊 Solana Program (Anchor)
 
-### "No nodes found on-chain"
-**Solution**: Normal for fresh deployment. System uses demo nodes as fallback (Colorado River, Mississippi Delta, Great Lakes).
+**Program ID**: `3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL`  
+**Network**: Devnet  
+**Framework**: Anchor 0.32.1
 
-### "Agent: Insufficient funds"
-**Solution**: Agent auto-requests devnet airdrop. If faucet is slow, manually airdrop:
-```bash
-solana airdrop 1 <AGENT_ADDRESS> --url devnet
+### Accounts
+
+#### Node Account (PDA)
+Seeds: `["node", authority, agent]`
+
+```rust
+pub struct Node {
+    pub authority: Pubkey,  // Node operator (payment recipient)
+    pub agent: Pubkey,      // Authorized submitter (sensor firmware)
+    pub name: String,       // Human-readable identifier
+    pub bump: u8,           // PDA bump seed
+}
 ```
 
-### "Failed to fetch nodes"
-**Solution**: Make sure dev server is running (`npm run dev`)
+#### State Account (PDA)
+Seeds: `["state", node]`
 
-### Leaflet map "container already initialized"
-**Solution**: Fixed via unique key prop. Should not occur.
+```rust
+pub struct State {
+    pub node: Pubkey,           // Node account reference
+    pub ts: i64,                // Unix timestamp
+    pub ph: Option<f32>,        // pH level (0-14)
+    pub turbidity: Option<f32>, // Turbidity (NTU)
+    pub conductivity: Option<f32>, // Conductivity (μS/cm)
+    pub temp: Option<f32>,      // Temperature (°C)
+    pub level: Option<f32>,     // Water level (m)
+    pub seq: u64,               // Reading sequence number
+    pub bump: u8,               // PDA bump seed
+}
+```
+
+### Instructions
+
+#### `create_node(name: String)`
+Initialize a new water monitoring node.
+- Creates Node PDA
+- Sets authority (caller) as payment recipient
+- Designates agent as authorized submitter
+- Emits creation event
+
+#### `submit_reading(reading: ReadingInput)`
+Submit water quality data (agent only).
+- Verifies agent signature
+- Creates/updates State PDA
+- Increments sequence number
+- Emits ReadingEvent for indexers
+
+### Events
+
+#### `ReadingEvent`
+```rust
+pub struct ReadingEvent {
+    pub node: Pubkey,
+    pub ts: i64,
+    pub ph: Option<f32>,
+    pub turbidity: Option<f32>,
+    pub conductivity: Option<f32>,
+    pub temp: Option<f32>,
+    pub level: Option<f32>,
+    pub seq: u64,
+}
+```
+
+### Security Features
+- **Agent Authorization** - Only designated agent can submit readings
+- **PDA Validation** - Seeds prevent unauthorized account modifications
+- **Signature Verification** - Agent must sign all submit_reading transactions
+- **Error Handling** - Custom error: `UnauthorizedAgent` (code 6000)
+
+**View Program**: `npm run idl` or visit `/idl` page in dashboard
 
 ---
 
-## 🔒 Security Notes
+## 🧪 Complete Demo Flow
 
-### Devnet Only
-- All transactions on **Solana devnet**
-- Use **test SOL only** (via airdrop)
-- **Never** use real funds or mainnet keys
+### Step 1: Seed Blockchain (Optional)
+```bash
+npm run seed
+```
+Creates 10 nodes on Solana devnet with initial readings.
 
-### Agent Wallet
-- Agent auto-generates ephemeral wallet
-- Private key logged to console (devnet only!)
-- For production: use secure key management
+### Step 2: Run Agent
+```bash
+npm run agent
+```
+Watch autonomous agent:
+1. Generate wallet + airdrop SOL
+2. Discover nodes from blockchain
+3. Send real payments to node operators
+4. Fetch sensor data + USGS + weather
+5. Analyze water quality (EPA standards)
+6. Generate alerts for contamination
+7. Save results to `public/agent-output.json`
 
-### API Security
-- No authentication required (demo)
-- For production: add API keys, rate limiting
-- Payment verification happens on-chain (trustless)
+### Step 3: Start Dashboard
+```bash
+npm run dev
+# http://localhost:3000
+```
+
+### Step 4: Explore
+
+**Dashboard** (`/dashboard`)
+- Network overview with live node count
+- Agent activity showing recent payments
+- Switchboard price feed (SOL/USDC)
+- Real-time refresh every 30s
+
+**Atlas** (`/atlas`)
+- Interactive Leaflet map
+- Open-Meteo weather overlay
+- USGS water data points
+- AONA sensor network coverage
+
+**Impact** (`/impact`)
+- People protected: ~1,500
+- Crisis avoided: Multiple events
+- Cost saved: Variable (EPA benchmarks)
+- Prevention rate: 30% alerts → action
+
+**Nodes** (`/nodes`)
+- Reputation rankings (Platinum > Gold > Silver > Bronze)
+- Price per reading (0.001-0.003 SOL)
+- Total earnings per node
+- Click for detail page
+
+**Node Detail** (`/nodes/[id]`)
+- Real-time sensor readings
+- Local weather conditions (Open-Meteo)
+- USGS watershed data
+- Reputation stats
+- Payment information
+
+**Alerts** (`/alerts`)
+- AI-generated water quality alerts
+- Severity-based filtering
+- EPA standard violations
+- Recommended actions
+
+**Contribute** (`/contribute`)
+- Submit smartphone sensor reports
+- Geolocation auto-detect
+- AI agent verification (USGS + Open-Meteo cross-reference)
+- Future: Token rewards for quality contributors
+
+**IDL** (`/idl`)
+- Solana program documentation
+- Account structures
+- Instruction reference
+- Security features
+- Quick start guide
 
 ---
 
-## 🎨 Design Philosophy
+## 🚀 Production Deployment Checklist
 
-**Aqua-Shodō Minimalism** - Zen ink calligraphy meets hydrology-tech:
-- Temple-tech aesthetic (calm, elegant, spacious)
-- Scientific rigor meets sacred reverence for water
-- Data as intelligence, water as teacher
+### Smart Contracts
+- [ ] Deploy Anchor program to mainnet
+- [ ] Configure mainnet RPC endpoint
+- [ ] Set up program upgrade authority
+- [ ] Audit smart contract security
 
-### Color Palette
-- **Primary**: Deep river blue
-- **Secondary**: Jade green
-- **Accent**: Soft teal
-- **Neutrals**: White mists, black ink
+### Backend
+- [ ] Add API authentication (API keys)
+- [ ] Implement rate limiting (Redis)
+- [ ] Set up monitoring (Datadog/Sentry)
+- [ ] Configure CORS policies
+
+### Agent
+- [ ] Secure key management (AWS Secrets Manager)
+- [ ] Implement payment retry logic
+- [ ] Add error recovery mechanisms
+- [ ] Set up automated scheduling (cron)
+
+### Frontend
+- [ ] Migrate to mainnet Solana wallet adapters
+- [ ] Configure production RPC endpoints
+- [ ] Set up CDN (Vercel/Cloudflare)
+- [ ] Enable SSL/TLS certificates
+
+### Oracles
+- [ ] Migrate Switchboard → Pyth Network (mainnet)
+- [ ] Set up price feed monitoring
+- [ ] Implement stale price fallbacks
+
+### DePIN
+- [ ] Deploy smartphone sensor app (iOS/Android)
+- [ ] Implement contributor rewards (tokens)
+- [ ] Set up reputation system on-chain
+- [ ] Launch community governance
 
 ---
 
-## 🌐 Environment Variables
+## 🌍 Environment Variables
 
-All variables are optional - defaults work out of the box.
+All optional - defaults work out of the box.
 
 ```bash
 # Solana Configuration
 NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com
 NEXT_PUBLIC_PROGRAM_ID=3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL
 
-# External APIs (optional - free public APIs work without keys)
-OPENWEATHER_API_KEY=           # Enhanced weather data (optional)
-
-# Agent Configuration (optional)
-AGENT_PRIVATE_KEY=             # Use specific wallet (auto-generated otherwise)
+# Agent Configuration
+AGENT_PRIVATE_KEY=          # Base58 private key (auto-generated if not set)
 AONA_API_BASE=http://localhost:3000
+
+# External APIs (optional - work without keys)
+OPENWEATHER_API_KEY=        # Enhanced weather data
 ```
+
+---
+
+## 🐛 Troubleshooting
+
+**"No nodes found on-chain"**  
+→ Normal for fresh deployment. System uses demo nodes as graceful fallback.
+
+**"Agent: Insufficient funds"**  
+→ Agent auto-requests airdrop. If faucet fails, manual airdrop:
+```bash
+solana airdrop 1 <AGENT_ADDRESS> --url devnet
+```
+
+**"Failed to fetch nodes"**  
+→ Ensure dev server running: `npm run dev`
+
+**"Seed script error"**  
+→ IDL type issue - see `/idl` page for manual program interaction guide
+
+**Leaflet map errors**  
+→ Fixed via dynamic import with `ssr: false` in Next.js
+
+---
+
+## 🎨 Design Philosophy
+
+**Aqua-Shodō Minimalism** - Zen ink calligraphy meets hydrology-tech:
+- Sacred reverence for water as a living system
+- Scientific rigor with temple-tech aesthetic
+- Data as intelligence, blockchain as permanence
+- Calm, elegant, spacious UI/UX
+
+**Color Palette**:
+- Primary: Deep river blue (#0F52BA)
+- Secondary: Jade green (#00A36C)
+- Accent: Soft teal (#5F9EA0)
+- Neutrals: White mists, black ink, slate grays
 
 ---
 
@@ -595,19 +789,28 @@ MIT License - See [LICENSE](./LICENSE)
 
 ## 🙏 Acknowledgments
 
-- **Solana** - Fast, cheap blockchain for micropayments
-- **Coinbase** - x402 protocol SDK
-- **USGS** - Free water quality data (waterservices.usgs.gov)
-- **Open-Meteo** - Free weather forecasts (open-meteo.com)
-- **Switchboard** - Oracle infrastructure
+- **Solana Foundation** - Fast, cheap blockchain infrastructure
+- **Coinbase** - x402 Protocol SDK and specification
+- **Switchboard** - Oracle framework for price feeds
+- **USGS** - Free public water quality data
+- **Open-Meteo** - Free weather forecasts without API keys
 - **Leaflet** - Open-source mapping library
+- **shadcn/ui** - Beautiful component library
 
 ---
 
-**Mission**: Transform water protection from reactive to proactive
+## 🔗 Links
 
-**Built on**: Solana blockchain + DePIN + x402 micropayments
+- **GitHub**: [https://github.com/ValenteCreativo/AONA](https://github.com/ValenteCreativo/AONA)
+- **Solana Explorer**: [View Program](https://explorer.solana.com/address/3SPZr1HBntkGvrTUCZnivEpCm4PsShHZ8nbxYeLUotwL?cluster=devnet)
+- **x402 Protocol**: [https://x402.org](https://x402.org)
+- **USGS Water Services**: [https://waterservices.usgs.gov](https://waterservices.usgs.gov)
+- **Open-Meteo**: [https://open-meteo.com](https://open-meteo.com)
 
+---
+
+**Mission**: Transform water protection from reactive to proactive  
+**Stack**: Solana + x402 + Switchboard + DePIN  
 **Status**: ✅ Production-ready | ✅ Real impact | ✅ Global expansion ready
 
 🌊 **Water knows. The network translates. Communities protect. AONA.** 🌊

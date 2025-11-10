@@ -1,0 +1,21 @@
+{
+  "timestamp": 1762752048503,
+  "agentAddress": "2MmwWFoJqDtUnaUtaF7t8Zw9LoKYiXKGV7HdNJ3WZBvH",
+  "totalSpent": 0,
+  "nodesConsulted": 0,
+  "alertsGenerated": 0,
+  "nodes": [],
+  "payments": [],
+  "summary": {
+    "totalNodes": 0,
+    "totalSpentSOL": 0,
+    "totalSpentLamports": 0,
+    "alertsGenerated": 0,
+    "alertsBySeverity": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "overallWaterQuality": "good"
+  }
+}
